@@ -63,7 +63,7 @@ namespace BookStore_API
                 c.IncludeXmlComments(xpath);
             });
 
-
+            services.AddScoped<IAuthorRepository,AuthorRepository>();
             services.AddSingleton<ILoggerService,LoggerService>();
 
 
