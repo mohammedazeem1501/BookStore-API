@@ -69,6 +69,6 @@ namespace BookStore_API.DTOs
         public decimal? Price { get; set; }
 
         [Required]
-        public int AuthorId { get; set; }
+        public int AuthorId{ get; set; }
     }
 }
