@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BookStore_API.Contracts;
 using BookStore_API.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

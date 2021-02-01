@@ -10,7 +10,6 @@ namespace BookStore_API.Services
 {
     public class BookRepository : IBookRepository
     {
-
         private readonly ApplicationDbContext _db;
 
         public BookRepository(ApplicationDbContext db)
@@ -31,19 +30,32 @@ namespace BookStore_API.Services
 
         public async Task<IList<Book>> FindAll()
         {
-            var books = await _db.Books.ToListAsync();
+            var books = await _db.Books
+                .Include(q => q.Author)
+                .ToListAsync();
             return books;
         }
 
         public async Task<Book> FindById(int id)
         {
-            var book = await _db.Books.FindAsync(id);
+            var book = await _db.Books
+                .Include(q => q.Author)
+                .FirstOrDefaultAsync(q => q.Id == id);
             return book;
         }
 
-        public async Task<bool> IsExists(int id)
+        public async Task<string> GetImageFileName(int id)
         {
-            return await _db.Books.AnyAsync(q => q.Id == id);
+            var book = await _db.Books
+                .AsNoTracking()
+                .FirstOrDefaultAsync(q => q.Id == id);
+            return book.Image;
+        }
+
+        public async Task<bool> isExists(int id)
+        {
+            var isExists = await _db.Books.AnyAsync(q => q.Id == id);
+            return isExists;
         }
 
         public async Task<bool> Save()

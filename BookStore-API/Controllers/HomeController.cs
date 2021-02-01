@@ -3,66 +3,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BookStore_API.Contracts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.Extensions.Logging;
 
 namespace BookStore_API.Controllers
 {
     /// <summary>
-    /// this is a test Api
+    /// THis is a test API controller
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class HomeController : ControllerBase
     {
-
         private readonly ILoggerService _logger;
 
         public HomeController(ILoggerService logger)
         {
             _logger = logger;
         }
+
         /// <summary>
-        /// Get a dummy value
+        /// Gets Values 
         /// </summary>
         /// <returns></returns>
-        // GET: api/<HomeController>
+        // GET: api/Home
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            _logger.LogInfo("Accessed home controller");
+            _logger.LogInfo("Accessed Home Controller");
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<HomeController>/5
-        [HttpGet("{id}")]
+        /// <summary>
+        /// Get a value
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        // GET: api/Home/5
+        [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
-            _logger.LogDebug("got a value from home controller");
+            _logger.LogDebug("Got A Value");
             return "value";
         }
 
-        // POST api/<HomeController>
+        // POST: api/Home
         [HttpPost]
         public void Post([FromBody] string value)
         {
-            _logger.LogError("Error from  home controller");
-            
+            _logger.LogError("This is an error");
         }
 
-        // PUT api/<HomeController>/5
+        // PUT: api/Home/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<HomeController>/5
+        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _logger.LogWarn("warning from home controller");
-            
+            _logger.LogWarn("This is a warning");
         }
     }
 }

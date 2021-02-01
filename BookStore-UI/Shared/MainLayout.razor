@@ -1,5 +1,10 @@
 ﻿@inherits LayoutComponentBase
 
+
+
+<BlazoredToasts />
+
+
 <div class="sidebar">
     <NavMenu />
 </div>
@@ -10,6 +15,11 @@
     </div>
 
     <div class="content px-4">
-        @Body
+        <div class="card">
+            <div class="card-body">
+                @Body
+
+            </div>
+        </div>
     </div>
 </div>

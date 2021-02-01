@@ -23,8 +23,7 @@ namespace BookStore_UI.Service
 
         public AuthenticationRepository(IHttpClientFactory client,
             ILocalStorageService localStorage,
-            AuthenticationStateProvider authenticationStateProvider
-            )
+            AuthenticationStateProvider authenticationStateProvider)
         {
             _client = client;
             _localStorage = localStorage;
@@ -72,7 +71,7 @@ namespace BookStore_UI.Service
         public async Task<bool> Register(RegistrationModel user)
         {
             var request = new HttpRequestMessage(HttpMethod.Post
-                , Endpoints.RegisterEndpoint); 
+                , Endpoints.RegisterEndpoint);
             request.Content = new StringContent(JsonConvert.SerializeObject(user)
                 , Encoding.UTF8, "application/json");
 
